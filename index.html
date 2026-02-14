@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,32 +10,31 @@ body{
   margin:0;
   height:100vh;
   overflow:hidden;
-  font-family: 'Segoe UI', sans-serif;
+  font-family:'Segoe UI',sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
   color:white;
 }
 
-/* Background slideshow */
+/* slideshow background */
 .bg{
   position:fixed;
   width:100%;
   height:100%;
   background-size:cover;
   background-position:center;
-  animation:slide 18s infinite;
+  animation:slide 15s infinite;
   z-index:-1;
+  filter:brightness(0.6);
 }
 
 @keyframes slide{
-  0%{background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7');}
-  33%{background-image:url('https://images.unsplash.com/photo-1501908734255-16579c18c25f');}
-  66%{background-image:url('https://images.unsplash.com/photo-1497436072909-60f360e1d4b1');}
-  100%{background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7');}
+  0%{background-image:url('pic1.jpg');}
+  50%{background-image:url('pic2.jpg');}
+  100%{background-image:url('pic1.jpg');}
 }
 
-/* main box */
 .box{
   background:rgba(0,0,0,0.65);
   padding:40px;
@@ -48,7 +46,6 @@ body{
 
 h1{
   font-size:28px;
-  margin-bottom:10px;
   color:#ffccd5;
 }
 
@@ -83,18 +80,28 @@ button{
   display:none;
   color:#ffd166;
 }
+
+.photo{
+  display:none;
+  margin-top:20px;
+}
+
+.photo img{
+  width:250px;
+  border-radius:20px;
+  box-shadow:0 0 20px black;
+}
 </style>
 </head>
 
 <body>
 
-<!-- background -->
 <div class="bg"></div>
 
-<!-- music (Tum Mile instrumental from youtube autoplay) -->
-<iframe width="0" height="0" 
-src="https://www.youtube.com/embed/Bn0s0n9z1d8?autoplay=1&loop=1&playlist=Bn0s0n9z1d8" 
-frameborder="0" allow="autoplay"></iframe>
+<!-- music -->
+<audio id="song" loop>
+<source src="https://pagalfree.com/musics/128-Tum%20Mile%20-%20Tum%20Mile%20128%20Kbps.mp3" type="audio/mp3">
+</audio>
 
 <div class="box">
 <h1>Chitnu Ji ❤️</h1>
@@ -115,20 +122,30 @@ Sach kahu… tumse hi meri duniya mil gayi. 💘
 I knew it 😌❤️<br>
 You just made my world perfect 💘
 </div>
+
+<div class="photo" id="photo">
+<img src="pic1.jpg">
+</div>
+
 </div>
 
 <script>
 let yesSize = 18;
 
 function noClick(){
-  yesSize += 10;
+  yesSize += 12;
   document.getElementById("yes").style.fontSize = yesSize + "px";
   document.getElementById("yes").style.padding = yesSize + "px";
 }
 
 function yesClick(){
   document.getElementById("msg").style.display="block";
+  document.getElementById("photo").style.display="block";
 }
+
+document.body.addEventListener("click", function(){
+  document.getElementById("song").play();
+}, { once:true });
 </script>
 
 </body>
